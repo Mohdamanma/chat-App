@@ -1,5 +1,6 @@
 import React from 'react'
 import assets from '../assets/assets'
+import { Link } from 'react-router-dom'
 
 function LeftSideBar() {
   return (
@@ -11,7 +12,7 @@ function LeftSideBar() {
             <img src={assets.menu_icon} className='h-4 cursor-pointer' alt="" />
             {/* Sub-Menu */}
             <div className='hidden group-hover:block  absolute top-full right-0 w-32 rounded-md bg-white text-black p-3'>
-              <p className='cursor-pointer text-sm font-[poppins]'>Edit Profile</p>
+              <Link to='/profile'><p className='cursor-pointer text-sm font-[poppins]'>Edit Profile</p></Link>
               <hr className='border-none h-[1px] my-2 bg-[#a4a4a4a4]'/>
               <p className='cursor-pointer text-sm font-[poppins]'>Logout</p>
             </div>

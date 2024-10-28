@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import assets from '../assets/assets'
+import { auth, db, logout } from '../confiq/firebase'
+import { useEffect } from 'react'
+import { AppContext } from '../context/AppContext'
 
 function RightSideBar() {
+
+  const { userData } = useContext(AppContext)
+
+  console.log("USer data is :",userData.name)
   return (
     <div className='bg-[#001030] relative h-[75vh] overflow-y-scroll no-scrollbar text-white'>
       <div className='pt-14 max-w-[80%] text-center flex flex-col items-center m-auto'>
@@ -13,15 +20,15 @@ function RightSideBar() {
       <div className='px-5'>
         <p className='text-sm font-medium'>Media</p>
         <div className='grid grid-cols-3 gap-3 max-h-[150px] overflow-y-scroll mt-2'>
-          <img src={assets.pic1} alt="" className='w-16 rounded cursor-pointer'/>
-          <img src={assets.pic2} alt="" className='w-16'/>
-          <img src={assets.pic3} alt="" className='w-16'/>
-          <img src={assets.pic4} alt=""  className='w-16'/>
-          <img src={assets.pic1} alt="" className='w-16 rounded cursor-pointer'/>
-          
+          <img src={assets.pic1} alt="" className='w-16 rounded cursor-pointer' />
+          <img src={assets.pic2} alt="" className='w-16' />
+          <img src={assets.pic3} alt="" className='w-16' />
+          <img src={assets.pic4} alt="" className='w-16' />
+          <img src={assets.pic1} alt="" className='w-16 rounded cursor-pointer' />
+
         </div>
       </div>
-      <button type="button" className='absolute bottom-4 left-1/2 transform translate-x-[-50%] bg-[#077eff] font-light text-xs px-16 py-2 rounded-full cursor-pointer'>Logout</button>
+      <button type="button" className='absolute bottom-4 left-1/2 transform translate-x-[-50%] bg-[#077eff] font-light text-xs px-16 py-2 rounded-full cursor-pointer' onClick={() => logout()}>Logout</button>
     </div>
   )
 }

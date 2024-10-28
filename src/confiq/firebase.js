@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { doc, getFirestore, setDoc } from "firebase/firestore/lite";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth/cordova";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth/cordova";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 
@@ -17,8 +17,8 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
-const auth = getAuth(app)
-const db = getFirestore(app)
+export const auth = getAuth(app)
+export const db = getFirestore(app)
 
 export const signup = async ({ name, password, email }) => {
   try {
@@ -41,7 +41,7 @@ export const signup = async ({ name, password, email }) => {
     nav
   } catch (error) {
     console.log(error)
-    toast.error(error.code)
+    toast.error(error.code.split('/')[1].split('-').join(" "))
   }
 }
 
@@ -50,6 +50,11 @@ export const login = async ({ email, password }) => {
     await signInWithEmailAndPassword(auth, email, password)
     toast.success('Login Sucessfully')
   } catch (error) {
-    toast.error(error.code)
+
+    toast.error(error.code.split('/')[1].split('-').join(" "))
   }
+}
+
+export const logout = async () => {
+  await signOut(auth)
 }
