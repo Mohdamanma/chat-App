@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { doc, getFirestore, setDoc } from "firebase/firestore/lite";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth/cordova";
 import { toast } from "react-toastify";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCbPRg3I0yOa4HmBXxGp0wao6MRrXesh9U",
@@ -35,16 +35,14 @@ export const signup = async ({ name, password, email }) => {
       lastSeen: Date.now()
     })
     await setDoc(doc(db, 'chats', user.uid), {
-      chatdata: []
+      chatsdata: []
     })
     toast.success('signUp Sucessfully')
-    nav
   } catch (error) {
     console.log(error)
     toast.error(error.code.split('/')[1].split('-').join(" "))
   }
 }
-
 export const login = async ({ email, password }) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)

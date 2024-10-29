@@ -46,7 +46,7 @@ function ProfileUpdate() {
     e.preventDefault()
     try {
       if (!prevImage && image) {
-        toast.error("Upload Profile Picture")
+        toast.success("Upload Profile Picture")
       }
       const docRef = doc(db, "users", uid)
       if (image) {

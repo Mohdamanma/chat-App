@@ -8,7 +8,7 @@ function RightSideBar() {
 
   const { userData } = useContext(AppContext)
 
-  console.log("USer data is :",userData.name)
+  // console.log("USer data is :",userData.name)
   return (
     <div className='bg-[#001030] relative h-[75vh] overflow-y-scroll no-scrollbar text-white'>
       <div className='pt-14 max-w-[80%] text-center flex flex-col items-center m-auto'>
